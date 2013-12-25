@@ -1,0 +1,12 @@
+F:\m\GoodLand\Temp\bin\Debug\Assembly-CSharp.dll
+F:\m\GoodLand\Temp\bin\Debug\Assembly-CSharp.pdb
+F:\m\GoodLand\Temp\bin\Debug\Assembly-UnityScript-firstpass.dll
+F:\m\GoodLand\Temp\bin\Debug\UnityEditor.dll
+F:\m\GoodLand\Temp\bin\Debug\UnityEngine.dll
+F:\m\GoodLand\Temp\bin\Debug\Mono.Cecil.dll
+F:\m\GoodLand\Temp\bin\Debug\nunit.framework.dll
+F:\m\GoodLand\Temp\bin\Debug\Unity.DataContract.dll
+F:\m\GoodLand\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+F:\m\GoodLand\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+F:\m\GoodLand\obj\Debug\Assembly-CSharp.dll
+F:\m\GoodLand\obj\Debug\Assembly-CSharp.pdb
