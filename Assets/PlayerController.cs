@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour {
             body.AddForce(Vector2.up * flyForce);
         }
 
+        if (size <= 0)
+        {
+            size = 0.1f;
+        }
+
         if(transform.localScale.x < size)
         {
             transform.localScale = new Vector3(transform.localScale.x + 0.1f, transform.localScale.x + 0.1f, 0.0f);
@@ -45,9 +50,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         // kill if out of camera
-        if (transform.position.x < CameraController.instance.totalX - (Screen.width / 2 - 10) / 100)
+        if (transform.position.x < CameraController.instance.totalX - (Screen.width / 2) / 100)
         {
-            Debug.Log("out");
             Kill();
         }
 	}
