@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour {
     public static CameraController instance;
 
     public PlayerController first;
+    public float totalX;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,7 @@ public class CameraController : MonoBehaviour {
         
         float x = 0;
         
+        // get first
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i].transform.position.x > x)
@@ -32,6 +34,16 @@ public class CameraController : MonoBehaviour {
         }
 
 
-        transform.position = new Vector3(x, first.transform.position.y, -10);
+        // move slowly forward
+        totalX += 0.02f;
+
+        // 
+        if (x > totalX)
+        {
+            totalX = x;
+        }
+
+
+        transform.position = new Vector3(totalX, first.transform.position.y, -10);
 	}
 }

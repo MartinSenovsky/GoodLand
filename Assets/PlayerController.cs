@@ -39,9 +39,16 @@ public class PlayerController : MonoBehaviour {
         //body.angularVelocity = 0;
 
         // move forward
-        if (body.velocity.x < 10)
+        if (body.velocity.x < 2)
         {
             body.AddForce(Vector2.right);
+        }
+
+        // kill if out of camera
+        if (transform.position.x < CameraController.instance.totalX - (Screen.width / 2 - 10) / 100)
+        {
+            Debug.Log("out");
+            Kill();
         }
 	}
 
