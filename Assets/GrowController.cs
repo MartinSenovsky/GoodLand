@@ -20,7 +20,7 @@ public class GrowController : MonoBehaviour {
         if (collider.gameObject.CompareTag("Player"))
         {
             PlayerController p = collider.gameObject.GetComponent<PlayerController>();
-            p.size += amount;
+            p.AddSize(amount);
             Destroy(gameObject);
         }
     }

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShrinkController : MonoBehaviour {
+public class CounterClockwiseController : MonoBehaviour {
 
-    public float amount = 0.5f;
+    public float amount = 200;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class ShrinkController : MonoBehaviour {
         if (collider.gameObject.CompareTag("Player"))
         {
             PlayerController p = collider.gameObject.GetComponent<PlayerController>();
-            p.AddSize(amount);
+            p.SetRotation(amount);
             Destroy(gameObject);
         }
     }

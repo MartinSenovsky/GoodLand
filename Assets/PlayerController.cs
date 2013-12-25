@@ -3,10 +3,15 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    Rigidbody2D body;
+    public Rigidbody2D body;
     public int flyForce;
     public KeyCode flyKey;
     public float size = 1;
+    public int player = 1;
+
+    private int timeout = -1;
+    private Vector2 velocity;
+    private float angularVelocity;
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +19,8 @@ public class PlayerController : MonoBehaviour {
         gameObject.tag = "Player";
 
         transform.localScale = new Vector3(0.1f, 0.1f, 0.0f);
-
-        CameraController.instance.players.Add(this);
-
+        
+        CameraController.instance.AddPlayer(this);
 	}
 	
 	// Update is called once per frame
@@ -54,11 +58,49 @@ public class PlayerController : MonoBehaviour {
         {
             Kill();
         }
+
+
+        // update to original 
+        if (timeout == 0)
+        {
+            timeout = -1;
+            body.angularVelocity = angularVelocity;
+            body.velocity = velocity;
+        }
+
+        // update after timeout to 
+        if (timeout > 0)
+        {
+            timeout--;
+        }
 	}
 
     public void Kill()
     {
-        CameraController.instance.players.Remove(this);
+        CameraController.instance.RemovePlayer(this);
         Destroy(gameObject);
+    }
+
+    internal void SetRotation(float amount)
+    {
+        for (int i = 0; i < CameraController.instance.players[player].Count; i++)
+        {
+            CameraController.instance.players[player][i].body.angularVelocity += amount;
+        }
+    }
+
+    internal void AddSize(float amount)
+    {
+        for (int i = 0; i < CameraController.instance.players[player].Count; i++)
+        {
+            CameraController.instance.players[player][i].size += amount;
+        }
+    }
+
+    internal void ApplySpawn(Vector2 _velocity, float _angularVelocity)
+    {
+        timeout = 10;
+        velocity = _velocity;
+        angularVelocity = _angularVelocity;
     }
 }

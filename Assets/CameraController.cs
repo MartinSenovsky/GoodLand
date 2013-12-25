@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour {
 
-    public List<PlayerController> players;
+    public List<List<PlayerController>> players;
 
     public static CameraController instance;
 
@@ -15,7 +15,11 @@ public class CameraController : MonoBehaviour {
 	void Start () {
         instance = this;
 
-	    players = new List<PlayerController>();
+        players = new List<List<PlayerController>>();
+        
+        players.Add(new List<PlayerController>());
+        players.Add(new List<PlayerController>());
+        players.Add(new List<PlayerController>());
 	}
 	
 	// Update is called once per frame
@@ -24,12 +28,15 @@ public class CameraController : MonoBehaviour {
         float x = 0;
         
         // get first
-        for (int i = 0; i < players.Count; i++)
+        for (int j = 0; j < players.Count; j++)
         {
-            if (players[i].transform.position.x > x)
+            for (int i = 0; i < players[j].Count; i++)
             {
-                first = players[i];
-                x = first.transform.position.x;
+                if (players[j][i].transform.position.x > x)
+                {
+                    first = players[j][i];
+                    x = first.transform.position.x;
+                }
             }
         }
 
@@ -46,4 +53,14 @@ public class CameraController : MonoBehaviour {
 
         transform.position = new Vector3(totalX, first.transform.position.y, -10);
 	}
+
+    internal void AddPlayer(PlayerController p)
+    {
+       players[p.player].Add(p);
+    }
+
+    internal void RemovePlayer(PlayerController p)
+    {
+        players[p.player].Remove(p);
+    }
 }

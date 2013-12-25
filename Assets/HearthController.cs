@@ -5,7 +5,6 @@ public class HearthController : MonoBehaviour {
 
     public int spawnNumber = 1;
 
-
 	// Use this for initialization
 	void Start () 
     {
@@ -26,7 +25,8 @@ public class HearthController : MonoBehaviour {
             Destroy(gameObject);
             for(int i = 0; i < spawnNumber; i++)
             {
-                Instantiate(p.gameObject);
+                GameObject o = GameObject.Instantiate(p.gameObject) as GameObject;
+                (o.GetComponent<PlayerController>() as PlayerController).ApplySpawn((p.gameObject.GetComponent<Rigidbody2D>() as Rigidbody2D).velocity, (p.gameObject.GetComponent<Rigidbody2D>() as Rigidbody2D).angularVelocity);
             }
         }
     }

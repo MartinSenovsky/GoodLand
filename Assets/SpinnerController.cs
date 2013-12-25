@@ -4,6 +4,7 @@ using System.Collections;
 public class SpinnerController : MonoBehaviour {
 
     public float speed;
+    public 
 
 	// Use this for initialization
 	void Start () {
