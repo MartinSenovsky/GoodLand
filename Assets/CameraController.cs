@@ -25,13 +25,16 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
+        // move camera
+
         float x = 0;
-        
-        // get first
+        bool end = true;
+        // iterate players
         for (int j = 0; j < players.Count; j++)
         {
             for (int i = 0; i < players[j].Count; i++)
             {
+                end = false;
                 if (players[j][i].transform.position.x > x)
                 {
                     first = players[j][i];
@@ -40,6 +43,11 @@ public class CameraController : MonoBehaviour {
             }
         }
 
+        if (end)
+        {
+            EndGame();
+            return;
+        }
 
         // move slowly forward
         totalX += 0.02f;
@@ -53,6 +61,12 @@ public class CameraController : MonoBehaviour {
         // move
         transform.position = new Vector3(totalX, first.transform.position.y, -10);
 	}
+
+    private void EndGame()
+    {
+        // end game
+        Debug.Log("END GAME");
+    }
 
     internal void AddPlayer(PlayerController p)
     {

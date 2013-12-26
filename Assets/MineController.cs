@@ -64,6 +64,7 @@ public class MineController : MonoBehaviour {
 
         // play animation
         GameObject explosion = (GameObject)Instantiate(Resources.Load("Explosion1"));
+        (explosion.GetComponent<ExplosionColor>() as ExplosionColor).SetColor(Color.black);
         explosion.transform.position = transform.position;
     }
 }

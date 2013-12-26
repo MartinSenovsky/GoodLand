@@ -3,10 +3,14 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+    public static int maxSpeed = 3;
+
     public Rigidbody2D body;
     public int flyForce = 20;
     public float size = 1;
+    public int rotationSpeed = 0;
     public int player = 1;
+    public Color color = Color.white;
 
     private int timeout = -1;
     private Vector2 velocity;
@@ -38,14 +42,17 @@ public class PlayerController : MonoBehaviour {
             transform.localScale = new Vector3(transform.localScale.x - 0.1f, transform.localScale.x - 0.1f, 0.0f);
         }
 
-        // fix rotation
-        //body.angularVelocity = 0;
+        // fixed rotation
+        body.angularVelocity = rotationSpeed;
 
         // move forward
-        if (body.velocity.x < 2)
+        body.AddForce(Vector2.right * 5);
+
+        if (body.velocity.x > maxSpeed)
         {
-            body.AddForce(Vector2.right);
+            body.velocity = new Vector2(maxSpeed, body.velocity.y);
         }
+
 
         // kill if out of camera
         if (Camera.main.WorldToScreenPoint(transform.position).x < 20)
@@ -80,6 +87,7 @@ public class PlayerController : MonoBehaviour {
     public void ShowKillAnim()
     {
         GameObject explosion = (GameObject)Instantiate(Resources.Load("Explosion2"));
+        (explosion.GetComponent<ExplosionColor>() as ExplosionColor).SetColor(color);
         explosion.transform.position = transform.position;
     }
 
@@ -89,11 +97,11 @@ public class PlayerController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    internal void SetRotation(float amount)
+    internal void SetRotation(int amount)
     {
         for (int i = 0; i < CameraController.instance.players[player].Count; i++)
         {
-            CameraController.instance.players[player][i].body.angularVelocity += amount;
+            CameraController.instance.players[player][i].rotationSpeed += amount;
         }
     }
 
@@ -110,6 +118,18 @@ public class PlayerController : MonoBehaviour {
         timeout = 10;
         velocity = _velocity;
         angularVelocity = _angularVelocity;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // crush by extreme force
+        float force = Mathf.Abs(Vector3.Dot(col.contacts[0].normal, col.relativeVelocity) * body.mass);
+
+        if (force > 10)
+        {
+            Kill();
+            ShowKillAnim();
+        }
     }
 }
  

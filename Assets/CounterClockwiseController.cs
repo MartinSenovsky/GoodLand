@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CounterClockwiseController : MonoBehaviour {
 
-    public float amount = 200;
+    public int amount = 200;
 
 	// Use this for initialization
 	void Start () {

@@ -20,7 +20,7 @@ public class ShrinkController : MonoBehaviour {
         if (collider.gameObject.CompareTag("Player"))
         {
             PlayerController p = collider.gameObject.GetComponent<PlayerController>();
-            p.AddSize(amount);
+            p.AddSize(-amount);
             Destroy(gameObject);
         }
     }
