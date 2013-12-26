@@ -64,7 +64,6 @@ public class MineController : MonoBehaviour {
 
         // play animation
         GameObject explosion = (GameObject)Instantiate(Resources.Load("Explosion1"));
-        //explosion.renderer.sortingLayerName = 
-        //explosion.transform.position = transform.position;
+        explosion.transform.position = transform.position;
     }
 }

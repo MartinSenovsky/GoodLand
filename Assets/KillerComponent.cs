@@ -18,6 +18,7 @@ public class KillerComponent : MonoBehaviour {
         if (collision.collider.gameObject.CompareTag("Player"))
         {
             collision.collider.gameObject.GetComponent<PlayerController>().Kill();
+            collision.collider.gameObject.GetComponent<PlayerController>().ShowKillAnim();
         }
     }
 }

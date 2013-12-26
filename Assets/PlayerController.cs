@@ -77,6 +77,12 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void ShowKillAnim()
+    {
+        GameObject explosion = (GameObject)Instantiate(Resources.Load("Explosion2"));
+        explosion.transform.position = transform.position;
+    }
+
     public void Kill()
     {
         CameraController.instance.RemovePlayer(this);
