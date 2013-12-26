@@ -44,13 +44,13 @@ public class CameraController : MonoBehaviour {
         // move slowly forward
         totalX += 0.02f;
 
-        // 
+        // fast forward if needed
         if (x > totalX)
         {
             totalX = x;
         }
 
-
+        // move
         transform.position = new Vector3(totalX, first.transform.position.y, -10);
 	}
 

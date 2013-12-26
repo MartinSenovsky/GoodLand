@@ -4,8 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
     public Rigidbody2D body;
-    public int flyForce;
-    public KeyCode flyKey;
+    public int flyForce = 20;
     public float size = 1;
     public int player = 1;
 
@@ -25,11 +24,6 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(flyKey))
-        {
-            body.AddForce(Vector2.up * flyForce);
-        }
-
         if (size <= 0)
         {
             size = 0.1f;
@@ -54,7 +48,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // kill if out of camera
-        if (transform.position.x < CameraController.instance.totalX - (Screen.width / 2) / 100)
+        if (Camera.main.WorldToScreenPoint(transform.position).x < 20)
         {
             Kill();
         }
@@ -74,6 +68,14 @@ public class PlayerController : MonoBehaviour {
             timeout--;
         }
 	}
+
+    static public void FlyUp(int player)
+    {
+        for (int i = 0; i < CameraController.instance.players[player].Count; i++)
+        {
+            CameraController.instance.players[player][i].body.AddForce(Vector2.up * CameraController.instance.players[player][i].flyForce);
+        }
+    }
 
     public void Kill()
     {
@@ -104,3 +106,4 @@ public class PlayerController : MonoBehaviour {
         angularVelocity = _angularVelocity;
     }
 }
+ 
