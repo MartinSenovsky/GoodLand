@@ -47,10 +47,18 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CameraController.cs" />
+     <Compile Include="Assets\CounterClockwiseController.cs" />
+     <Compile Include="Assets\CounterController.cs" />
+     <Compile Include="Assets\GrowController.cs" />
      <Compile Include="Assets\HearthController.cs" />
+     <Compile Include="Assets\KeyboardController.cs" />
      <Compile Include="Assets\KillerComponent.cs" />
+     <Compile Include="Assets\MineController.cs" />
      <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\RemoveAfterTimeout.cs" />
+     <Compile Include="Assets\ShrinkController.cs" />
      <Compile Include="Assets\SpinnerController.cs" />
+     <Compile Include="Assets\TouchController.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
