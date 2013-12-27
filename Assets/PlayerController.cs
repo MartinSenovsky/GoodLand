@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour {
     private Vector2 velocity;
     private float angularVelocity;
 
+    private Vector2 flyToVector;
+    private bool flyToActivated = false;
+
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody2D>();
@@ -28,6 +31,21 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
+        if (flyToActivated)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, flyToVector, 0.1f);
+
+            if (Vector2.Distance(transform.position, flyToVector) < 0.02f)
+            {
+                Kill();
+                // add score for my player
+            }
+
+            return;
+        }
+
+
         if (size <= 0)
         {
             size = 0.1f;
@@ -130,6 +148,13 @@ public class PlayerController : MonoBehaviour {
             Kill();
             ShowKillAnim();
         }
+    }
+
+    internal void FlyTo(float x, float y)
+    {
+        body.isKinematic = true;
+        flyToActivated = true;
+        flyToVector = new Vector2(x, y);
     }
 }
  

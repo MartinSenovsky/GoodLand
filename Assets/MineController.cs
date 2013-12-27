@@ -35,7 +35,6 @@ public class MineController : MonoBehaviour {
             if (!nearby.Contains(p))
             {
                 nearby.Add(p);
-                Debug.Log("add");
             }
         }
     }
@@ -46,7 +45,6 @@ public class MineController : MonoBehaviour {
         {
             PlayerController p = collider.gameObject.GetComponent<PlayerController>();
             nearby.Remove(p);
-            Debug.Log("remove");
         }
     }
 
